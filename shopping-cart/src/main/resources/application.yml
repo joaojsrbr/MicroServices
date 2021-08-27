@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: shopping-cart
+
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+server:
+  port: 8889
+
+
+management:
+  health:
+    redis:
+      enabled: false

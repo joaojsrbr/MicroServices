@@ -18,27 +18,30 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 public class ElasticSearchConfig extends AbstractElasticsearchConfiguration {
 
     @Override
+    @Bean
     public RestHighLevelClient elasticsearchClient() {
-        ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                        .connectedTo("localhost:9200", "localhost:9300")
-                        .build();
+
+        final ClientConfiguration clientConfiguration = ClientConfiguration.builder()
+                .connectedTo("localhost:9200")
+                .build();
 
         return RestClients.create(clientConfiguration).rest();
-
     }
-        @Bean
-        @Override
-        public EntityMapper entityMapper() {
-            ElasticsearchEntityMapper entityMapper = new ElasticsearchEntityMapper(elasticsearchMappingContext(),
-                    new DefaultConversionService());
-            entityMapper.setConversions(elasticsearchCustomConversions());
 
-            return entityMapper;
-        }
+    @Bean
+    @Override
+    public EntityMapper entityMapper() {
+        ElasticsearchEntityMapper entityMapper = new ElasticsearchEntityMapper(elasticsearchMappingContext(),
+                new DefaultConversionService());
+        entityMapper.setConversions(elasticsearchCustomConversions());
 
-
-
-
-
+        return entityMapper;
+    }
 }
+
+
+
+
+
+
 

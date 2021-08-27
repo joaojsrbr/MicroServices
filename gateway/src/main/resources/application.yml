@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: gateway
+
+server:
+  port: 8890
+
+  cloud:
+    config:
+      uri: http://localhost:8888
